@@ -20,27 +20,28 @@
                 <h2 class="text-3xl italic">Make Your Selection*</h2>
             </div>
             <div id="btn_container" class="flex items-center justify-center space-x-4">
-                <button class="bg-transparent hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-full js-rock-button">
+                <button class="bg-transparent hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-full js-rock-button"
+                onclick="main('rock');">
                     <img src="../assets/rock-emoji.png" class="hover:animate-wiggle">
                 </button>
-                <button class="bg-transparent hover:bg-slate-300 text-white font-bold py-2 px-4 rounded-full js-paper-button">
-                    <img src="../assets/paper-emoji.png">
+                <button class="bg-transparent hover:bg-slate-300 text-white font-bold py-2 px-4 rounded-full js-paper-button"
+                onclick="main('paper')">
+                <img src="../assets/paper-emoji.png">
                 </button>
-                <button class="bg-transparent hover:bg-red-400 text-white font-bold py-2 px-4 rounded-full js-scissors-button">
-                    <img src="../assets/scissors-emoji.png">
+                <button class="bg-transparent hover:bg-red-400 text-white font-bold py-2 px-4 rounded-full js-scissors-button"
+                onclick="main('scissors');" >
+                <img src="../assets/scissors-emoji.png">
                 </button>
             </div>
         </div>
         <div id="scoreboard" class="space-x-4 relative min-h-fit min-w-fit">
-            <div id="board-wrapper" class="flex inset-x-0 bottom-0 h-16 space-x-16">
-                <h1 class="js-results font-bold text-4xl">Wins: </h1>
-                <h1 class="js-moves font-bold text-4xl">Losses: </h1>
-                <h1 class="js-score score font-bold text-4xl">Ties: </h1>
-            </div>
+            <p class="js-result result"></p>
+            <p class="js-moves"></p>
+            <p class="js-score score"></p>
             <div id="reset_container" class="flex flex-col items-center mt-10">
                 <button  
                 class="bg-slate-900 hover:bg-red-700 text-white text-4xl font-bold py-2 px-4 rounded-full js-reset-score-button"
-                onclick="score.wins = 0;score.losses = 0;score.ties = 0;localStorage.removeItem('score');updateScoreElement();">
+                onclick="score.wins = 0;score.losses = 0;score.ties = 0;localStorage.removeItem('score');updateScore();">
                     RESET
                 </button>
             </div>

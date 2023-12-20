@@ -11,17 +11,10 @@ let score = JSON.parse(localStorage.getItem('score')) || {
 
 
 /**
- * Assign Button onClick Scripts
- */
-document.querySelector('.js-rock-button').addEventListener('click', () => { main('rock');});
-document.querySelector('.js-paper-button').addEventListener('click', () => {main('paper');});
-document.querySelector('.js-scissors-button').addEventListener('click', () => {main('scissors');});
-
-/**
  * Computer's Move
  */
 
-function getcomputerMove(){
+function getComputerMove(){
     let computerMove="";//assign empty move variable
     const randint=Math.random() * 4; //choose number between 1-3
     //assign random int to rock, paper, scissor, move and
@@ -38,8 +31,66 @@ function getcomputerMove(){
 }
 
 /**
+ * Updates the scoreboard
+ */
+
+function updateScore(){
+    document.getElementsByClassName('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+}
+/**
  *main game function
  */
 function main(playerMove){
+    
+    let computerMove=getComputerMove();
+    let result = '';
+
+    //main game switch statement
+    switch(playerMove){
+        case "rock":
+            if(computerMove==="paper"){
+                score.losses += 1;
+                result = 'You lose.';
+            }
+            else if(computerMove==="scissors"){
+                score.wins += 1;
+                result = 'You win.';
+            }
+            break;
+        case "paper":
+            if(computerMove==="rock"){
+                score.losses += 1;
+                result = 'You lose.';
+            }
+            else if(computerMove==="scissors"){
+                score.wins += 1;
+                result = 'You win.';
+            }
+            break;
+        case "scissors":
+            if(computerMove==="rock"){
+                score.wins += 1;
+                result = 'You win.';
+            }
+            else if(computerMove==="paper"){
+                score.losses += 1;
+                result = 'You lose.';
+            }
+            break;
+
+        default:
+            score.ties+=1;
+            result = 'Tie.';
+    }
+
+    //display on webpage
+    localStorage.setItem('score', JSON.stringify(score));
+    updateScore();
+    document.querySelector('.js-result').innerHTML = result;
+
+    document.querySelector('.js-moves').innerHTML = `You
+    <img src="assets/${playerMove}-emoji.png" class="move-icon">
+    <img src="assets/${computerMove}-emoji.png" class="move-icon">
+    Computer`;
     
 }
